@@ -23,5 +23,5 @@ go build photosort.go
 
 ### Run
 ```
-./photosort [srcFolder] [destFolder]
+./photosort --source-folder [srcFolder] --destination-folder [destFolder]
 ```
