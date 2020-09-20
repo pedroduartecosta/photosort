@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	// TODO: Test is using multiple CPUs actually improves perfomance since  this is a sequential process
+	// TODO: Test if using multiple CPUs actually improves performance since  this is a sequential process
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	var sourceFolder, destinationFolder string

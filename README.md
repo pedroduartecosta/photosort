@@ -18,7 +18,7 @@ This is my first attempt at the go language. Feel free to improve it through pul
 ### Build
 ```
 go get github.com/rwcarlsen/goexif/exif
-go build photosort.go
+go build photosort.go errors.go
 ```
 
 ### Run
