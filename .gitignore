@@ -13,3 +13,10 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# IDEs config files
+.idea
+
+# Personal folders for development purposes
+tmp-in
+tmp-out
