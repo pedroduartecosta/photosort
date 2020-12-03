@@ -94,7 +94,7 @@ func processFile(filePath string, archiveFolder string) (int64, error) {
 
 func isImageOrVideo(extension string) bool {
 
-	imageExtensions := map[string]bool{".tiff": true, ".tif": true, ".gif": true, ".jpeg": true, ".jpg": true, ".png": true, ".raw": true, ".webm": true, ".mkv": true, ".avi": true, ".mov": true, ".wmv": true, ".mp4": true, ".m4v": true, ".mpg": true, ".mp2": true, ".mpeg": true}
+	imageExtensions := map[string]bool{".tiff": true, ".tif": true, ".gif": true, ".jpeg": true, ".jpg": true, ".png": true, ".raw": true, ".webm": true, ".mkv": true, ".avi": true, ".mov": true, ".wmv": true, ".mp4": true, ".MP4": true, ".m4v": true, ".mpg": true, ".mp2": true, ".mpeg": true}
 
 	return imageExtensions[extension]
 }

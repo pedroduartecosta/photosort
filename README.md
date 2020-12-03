@@ -13,7 +13,7 @@ This is my first attempt at the go language. Feel free to improve it through pul
 - It ignores any duplicated file or non media files
 
 ### Media files supported
-```.tiff .tif .gif .jpeg .jpg .png .raw .webm .mkv .avi .mov .wmv .mp4 .m4v .mpg .mp2 .mpeg```
+```.tiff .tif .gif .jpeg .jpg .png .raw .webm .mkv .avi .mov .wmv .mp4 .MP4 .m4v .mpg .mp2 .mpeg```
 
 ### Build
 ```
