@@ -11,6 +11,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/rwcarlsen/goexif/exif"
 )
 
 func main() {
@@ -107,12 +109,23 @@ func isImageOrVideo(extension string) bool {
 }
 
 func getDate(filepath string) (time.Time, error) {
-	fileInfo, err := os.Stat(filepath)
+	file, err := os.Open(filepath)
 	if err != nil {
 		return time.Time{}, err
 	}
+	defer file.Close()
 
-	return fileInfo.ModTime(), nil
+	data, err := exif.Decode(file)
+	if err != nil {
+		// Fallback to file modification date if Exif data is not available
+		fileInfo, statErr := os.Stat(filepath)
+		if statErr != nil {
+			return time.Time{}, statErr
+		}
+		return fileInfo.ModTime(), nil
+	}
+
+	return data.DateTime()
 }
 
 // Returns true if a dir/file already exists
