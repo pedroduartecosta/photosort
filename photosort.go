@@ -7,7 +7,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -16,9 +15,6 @@ import (
 )
 
 func main() {
-	// TODO: Test if using multiple CPUs actually improves performance since  this is a sequential process
-	runtime.GOMAXPROCS(runtime.NumCPU())
-
 	var sourceFolder, destinationFolder string
 	flag.StringVar(&sourceFolder, "source-folder", "", "Source folder with photos")
 	flag.StringVar(&destinationFolder, "destination-folder", "", "Destination folder with archived sorted photos")
@@ -75,7 +71,7 @@ func processFile(filePath string, archiveFolder string) (int64, error) {
 
 	date, err := getDate(filePath)
 	if err != nil {
-		if err := createDir(fmt.Sprintf("%s/%s", archiveFolder, "others")); err != nil {
+		if err := createDir(filepath.Join(archiveFolder, "others")); err != nil {
 			return 0, err
 		}
 		extension := filepath.Ext(filePath)
