@@ -4,8 +4,6 @@ A small program written in Golang to copy and sort photos by year and month for 
 
 This is my first attempt at the go language. Feel free to improve it through pull requests!
 
-**_Important: This has only been tested on Windows 10, let me know how it behaves in other OS._**
-
 ### Functionality
 
 - Recursively visits all files and folders in the srcFolder directoy tree
