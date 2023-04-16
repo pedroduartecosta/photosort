@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -92,10 +93,17 @@ func processFile(filePath string, archiveFolder string) (int64, error) {
 }
 
 func isImageOrVideo(extension string) bool {
+	// Convert extension to lowercase to ensure case-insensitive comparison
+	ext := strings.ToLower(extension)
 
-	imageExtensions := map[string]bool{".tiff": true, ".tif": true, ".gif": true, ".jpeg": true, ".jpg": true, ".png": true, ".raw": true, ".webm": true, ".mkv": true, ".avi": true, ".mov": true, ".wmv": true, ".mp4": true, ".MP4": true, ".m4v": true, ".mpg": true, ".mp2": true, ".mpeg": true}
-
-	return imageExtensions[extension]
+	switch ext {
+	case ".tiff", ".tif", ".gif", ".jpeg", ".jpg", ".png", ".raw",
+		".webm", ".mkv", ".avi", ".mov", ".wmv", ".mp4", ".m4v",
+		".mpg", ".mp2", ".mpeg":
+		return true
+	default:
+		return false
+	}
 }
 
 func getDate(filepath string) (time.Time, error) {
