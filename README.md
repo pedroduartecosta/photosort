@@ -24,6 +24,12 @@ This is my first attempt at the go language. Feel free to improve it through pul
 go build
 ```
 
+### Test
+
+```
+go test
+```
+
 ### Run
 
 ```
