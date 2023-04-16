@@ -8,9 +8,8 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"time"
-
-	"github.com/rwcarlsen/goexif/exif"
 )
 
 func main() {
@@ -53,7 +52,7 @@ func main() {
 	}
 }
 
-//  Converts a size in bytes to a human-readable string in SI (decimal)
+// Converts a size in bytes to a human-readable string in SI (decimal)
 func ByteCountSI(b int64) string {
 	const unit = 1000
 	if b < unit {
@@ -78,7 +77,7 @@ func processFile(filePath string, archiveFolder string) (int64, error) {
 		}
 		extension := filepath.Ext(filePath)
 		if isImageOrVideo(extension) {
-			finalPath := fmt.Sprintf("%s/%s/%s", archiveFolder, "others", filename)
+			finalPath := filepath.Join(archiveFolder, "others", filename)
 			return copyFile(filePath, finalPath)
 		}
 		return 0, &ErrNotMediaFile{extension, filePath}
@@ -100,18 +99,12 @@ func isImageOrVideo(extension string) bool {
 }
 
 func getDate(filepath string) (time.Time, error) {
-	var dt time.Time
-	file, err := os.Open(filepath)
+	fileInfo, err := os.Stat(filepath)
 	if err != nil {
-		return dt, err
+		return time.Time{}, err
 	}
 
-	data, err := exif.Decode(file)
-	if err != nil {
-		return dt, err
-	}
-
-	return data.DateTime()
+	return fileInfo.ModTime(), nil
 }
 
 // Returns true if a dir/file already exists
@@ -127,12 +120,12 @@ func Exists(filepath string) (bool, error) {
 
 // Generates the entire new path based on all the data, checks for collisions (and rename if needed)
 func newPath(archive string, oldName string, date time.Time) (string, error) {
-	dir := fmt.Sprintf("%s/%d/%d", archive, date.Year(), date.Month())
+	dir := filepath.Join(archive, strconv.Itoa(date.Year()), strconv.Itoa(int(date.Month())))
 	if err := createDir(dir); err != nil {
 		return "", err
 	}
 
-	return fmt.Sprintf("%s/%d/%d/%s", archive, date.Year(), date.Month(), oldName), nil
+	return filepath.Join(archive, strconv.Itoa(date.Year()), strconv.Itoa(int(date.Month())), oldName), nil
 }
 
 // Creates a directory if it doesn't exist yet

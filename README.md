@@ -1,11 +1,13 @@
 # photosort
+
 A small program written in Golang to copy and sort photos by year and month for a source to a dest folder.
 
 This is my first attempt at the go language. Feel free to improve it through pull requests!
 
-***Important: This has only been tested on Windows 10, let me know how it behaves in other OS.***
+**_Important: This has only been tested on Windows 10, let me know how it behaves in other OS._**
 
 ### Functionality
+
 - Recursively visits all files and folders in the srcFolder directoy tree
 - Analyses if files have Exif date information
 - If so it copies the media file to the corresponding folder in the destfolder, creating the necessary folders such as Year and Month
@@ -13,15 +15,17 @@ This is my first attempt at the go language. Feel free to improve it through pul
 - It ignores any duplicated file or non media files
 
 ### Media files supported
-```.tiff .tif .gif .jpeg .jpg .png .raw .webm .mkv .avi .mov .wmv .mp4 .MP4 .m4v .mpg .mp2 .mpeg```
+
+`.tiff .tif .gif .jpeg .jpg .png .raw .webm .mkv .avi .mov .wmv .mp4 .MP4 .m4v .mpg .mp2 .mpeg`
 
 ### Build
+
 ```
-go get github.com/rwcarlsen/goexif/exif
 go build photosort.go errors.go
 ```
 
 ### Run
+
 ```
 ./photosort --source-folder [srcFolder] --destination-folder [destFolder]
 ```
