@@ -141,7 +141,7 @@ func createDir(dir string) error {
 	if exists, err := Exists(dir); err != nil {
 		return err
 	} else if !exists {
-		err = os.MkdirAll(dir, 0777)
+		err = os.MkdirAll(dir, 0755) // This is the default permission for a folder
 		if err != nil {
 			return err
 		}
