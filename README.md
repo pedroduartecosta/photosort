@@ -21,7 +21,7 @@ This is my first attempt at the go language. Feel free to improve it through pul
 ### Build
 
 ```
-go build photosort.go errors.go
+go build
 ```
 
 ### Run
